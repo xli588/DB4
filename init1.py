@@ -7,7 +7,7 @@ app = Flask(__name__)
 def hello():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
-    query = ("SELECT * from Movie")
+    query = ("SELECT * from Genre")
     cursor.execute(query)
     users=cursor.fetchall()
     cnx.close()
