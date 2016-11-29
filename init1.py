@@ -23,13 +23,13 @@ def submit():
     cursor = cnx.cursor()
     insert_stmt = (
         "INSERT INTO Movie (MovieID, MovieName, MovieYear) "
-        "VALUES (%s, %s, %5)"
+        "VALUES (%s, %s, %s)"
     )
     data = (request.form['idMovie'], request.form['MovieName'], request.form['MovieYear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('index.html', request.form['idMovie'], request.form['MovieName'], request.form['MovieYear' )
+    return render_template('index.html', request.form['idMovie'], request.form['MovieName'], request.form['MovieYear' ])
 
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
