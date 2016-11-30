@@ -141,31 +141,7 @@ def submit():
     cnx.close()
     return render_template('indexMovie.html', MovieName=request.form['Movie Name'])
 
-@app.route('/delete', methods=["POST", "GET"])
-def delete():
-    
-id = request.args.get('Movie ID')
-    
-cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    
-cursor = cnx.cursor()
-    
-delete_stmt = (
- "DELETE FROM Movie WHERE idMovie = %s;"
-    )
-    
-data = (id,)
-    
-cursor.execute(delete_stmt, data)
-    
-print (cursor._executed)
-    
-cnx.commit()
-   
-cnx.close()
-    
-return render_template('index.html')
-  
+
 
 
 @app.route('/sqlInjection')
