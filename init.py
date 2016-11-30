@@ -47,7 +47,7 @@ def Genre():
    return render_template('Genres.html',users=users)
 
 
-@app.route("/")
+@app.route("/Showing")
 
 def Showing():
     
@@ -66,7 +66,7 @@ def Showing():
    return render_template('Showing.html',users=users)
 
 
-@app.route("/")
+@app.route("/Customer")
 
 def Customer():
     
@@ -85,7 +85,7 @@ def Customer():
    return render_template('Customer.html',users=users)
 
 
-@app.route("/")
+@app.route("/Attend")
 
 def Attend():
     
@@ -103,7 +103,7 @@ def Attend():
     
    return render_template('Attend.html',users=users)
 
-@app.route("/")
+@app.route("/Theatre")
 
 def TheatreRoom():
     
