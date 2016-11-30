@@ -24,7 +24,7 @@ def Movie():
     cursor.execute(query)
     users=cursor.fetchall()
     cnx.close()
-    return render_template('usersMovie.html',users=users)
+    return render_template('MovieInsert.html',users=users)
 
 @app.route('/enterMovieName')
 def helloName(name=None):
