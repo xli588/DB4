@@ -1,9 +1,0 @@
- <form action="/submit" method="post">
-     Movie ID:<br>
-     <input type="text" name="idMovie" value="15"><br>
-     Movie Name:<br>
-     <input type="text" name="MovieName" value="Dr.Strange"><br>
-     Movie Year:<br>
-     <input type="text" name="MovieYear" value="2016"><br><br>
-     <input type="submit" value="Submit">
- </form>
