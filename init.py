@@ -123,7 +123,7 @@ def TheatreRoom():
 
 ### level 2 Movie ###
 
-@app.route('/entername')
+@app.route('/enterMoviename')
 def helloName(name=None):
     return render_template('formMovie.html', name=name)
 
@@ -160,6 +160,45 @@ def sqlInjectionResult():
     cnx.commit()
     cnx.close()
     return str(users)
+
+### level 2 Customer ###
+@app.route('/enterCustomername')
+def helloName(name=None):
+    return render_template('formMovie.html', name=name)
+
+@app.route('/submit', methods=["POST"])
+def submit():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    insert_stmt = (
+        "INSERT INTO Customer (FirstName, LastName, Email, Sex) "
+        "VALUES (%s, %s, %s, %s)"
+    )
+    data = ( request.formMovie['Movie Name'], request.formMovie['Movie Year'])
+    cursor.execute(insert_stmt, data)
+    cnx.commit()
+    cnx.close()
+    return render_template('indexMovie.html', MovieName=request.formMovie['Movie Name'])
+
+### level 2 Genre ###
+@app.route('/enterGenrename')
+def helloName(name=None):
+    return render_template('formMovie.html', name=name)
+
+@app.route('/submit', methods=["POST"])
+def submit():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    insert_stmt = (
+        "INSERT INTO Customer (FirstName, LastName, Email, Sex) "
+        "VALUES (%s, %s, %s, %s)"
+    )
+    data = ( request.formMovie['Movie Name'], request.formMovie['Movie Year'])
+    cursor.execute(insert_stmt, data)
+    cnx.commit()
+    cnx.close()
+    return render_template('indexMovie.html', MovieName=request.formMovie['Movie Name'])
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
