@@ -49,16 +49,6 @@ def Showing():
     return render_template('Showing.html',users=users)
 
 
-@app.route("/Customer")
-def Customer():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT * from Customer")
-    cursor.execute(query)
-    users=cursor.fetchall() 
-    cnx.close()
-    return render_template('Customer.html',users=users)
-
 
 @app.route("/Attend")
 def Attend():
