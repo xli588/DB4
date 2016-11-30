@@ -3,6 +3,7 @@ import mysql.connector
 
 app = Flask(__name__)
 
+### main page ###
 @app.route("/")
 def Welcome():
     return render_template('Welcome.html')
@@ -15,7 +16,7 @@ def Staff():
 def Guest():
     return render_template('Guest.html')
 
-
+### level 1 ###
 @app.route("/Movie")
 def Movie():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
@@ -25,6 +26,102 @@ def Movie():
     users=cursor.fetchall()
     cnx.close()
     return render_template('MovieInsert.html',users=users)
+
+
+@app.route("/Genres")
+
+def Genre():
+    
+   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+   cursor = cnx.cursor()
+    
+   query = ("SELECT * from Genre")
+    
+   cursor.execute(query)
+    
+   users=cursor.fetchall()
+    
+   cnx.close()
+    
+   return render_template('Genres.html',users=users)
+
+
+@app.route("/")
+
+def Showing():
+    
+   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+   cursor = cnx.cursor()
+    
+   query = ("SELECT * from Showing")
+    
+   cursor.execute(query)
+    
+   users=cursor.fetchall()
+    
+   cnx.close()
+    
+   return render_template('Showing.html',users=users)
+
+
+@app.route("/")
+
+def Customer():
+    
+   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+   cursor = cnx.cursor()
+    
+   query = ("SELECT * from Customer")
+    
+   cursor.execute(query)
+    
+   users=cursor.fetchall()
+    
+   cnx.close()
+    
+   return render_template('Customer.html',users=users)
+
+
+@app.route("/")
+
+def Attend():
+    
+   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+   cursor = cnx.cursor()
+    
+   query = ("SELECT * from Attend")
+    
+   cursor.execute(query)
+    
+   users=cursor.fetchall()
+    
+   cnx.close()
+    
+   return render_template('Attend.html',users=users)
+
+@app.route("/")
+
+def TheatreRoom():
+    
+   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+   cursor = cnx.cursor()
+    
+   query = ("SELECT * from TheatreRoom")
+    
+   cursor.execute(query)
+    
+   users=cursor.fetchall()
+    
+   cnx.close()
+    
+   return render_template('TheatreRoom.html',users=users)
+
+### level 2 Movie ###
 
 @app.route('/enterMovieName')
 def helloName(name=None):
