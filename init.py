@@ -144,7 +144,7 @@ def submit():
 @app.route('/delete', methods=["POST", "GET"])
 def delete():
     
-id = request.args.get('id')
+id = request.args.get('Movie ID')
     
 cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     
