@@ -27,76 +27,45 @@ def Movie():
     cnx.close()
     return render_template('Movie.html',users=users)
 
-
-@app.route("/Genres")
-
+@app.route("/Genre")
 def Genre():
-    
-   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    
-   cursor = cnx.cursor()
-    
-   query = ("SELECT * from Genre")
-    
-   cursor.execute(query)
-    
-   users=cursor.fetchall()
-    
-   cnx.close()
-    
-   return render_template('Genres.html',users=users)
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT * from Genre")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('Genre.html',users=users)
 
 
 @app.route("/Showing")
-
 def Showing():
-    
-   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    
-   cursor = cnx.cursor()
-    
-   query = ("SELECT * from Showing")
-    
-   cursor.execute(query)
-    
-   users=cursor.fetchall()
-    
-   cnx.close()
-    
-   return render_template('Showing.html',users=users)
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT * from Showing")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('Showing.html',users=users)
 
 
 @app.route("/Customer")
-
 def Customer():
-    
-   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    
-   cursor = cnx.cursor()
-    
-   query = ("SELECT * from Customer")
-    
-   cursor.execute(query)
-    
-   users=cursor.fetchall()
-    
-   cnx.close()
-    
-   return render_template('Customer.html',users=users)
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT * from Customer")
+    cursor.execute(query)
+    users=cursor.fetchall() 
+    cnx.close()
+    return render_template('Customer.html',users=users)
 
 
 @app.route("/Attend")
-
 def Attend():
-    
-   cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    
+   cnx = mysql.connector.connect(user='root', database='MovieTheatre') 
    cursor = cnx.cursor()
-    
    query = ("SELECT * from Attend")
-    
-   cursor.execute(query)
-    
+   cursor.execute(query) 
    users=cursor.fetchall()
     
    cnx.close()
