@@ -3,10 +3,6 @@ import mysql.connector
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return render_template('welcome.html')
-
 @app.route("/welcome")
 def welcome():
     return render_template('staff.html')
