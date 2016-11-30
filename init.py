@@ -42,7 +42,7 @@ def submit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexMovie.html', Movie Name=request.form['Movie Name'])
+    return render_template('indexMovie.html', MovieName=request.form['Movie Name'])
 
 @app.route("/Customer")
 def Customer():
