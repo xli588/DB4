@@ -135,11 +135,37 @@ def submit():
         "INSERT INTO Movie (Movie ID, Movie Name, Movie Year) "
         "VALUES (%s, %s, %s)"
     )
-    data = (request.form['Movie ID'], request.form['Movie Name'], request.form['Movie Year'])
+    data = (request.form['idMovie'], request.form['MovieName'], request.form['MovieYear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
     return render_template('indexMovie.html', MovieName=request.form['Movie Name'])
+
+@app.route('/delete', methods=["POST", "GET"])
+def delete():
+    
+id = request.args.get('id')
+    
+cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+cursor = cnx.cursor()
+    
+delete_stmt = (
+ "DELETE FROM Movie WHERE idMovie = %s;"
+    )
+    
+data = (id,)
+    
+cursor.execute(delete_stmt, data)
+    
+print (cursor._executed)
+    
+cnx.commit()
+   
+cnx.close()
+    
+return render_template('index.html')
+  
 
 
 @app.route('/sqlInjection')
