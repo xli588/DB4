@@ -135,7 +135,7 @@ def submit():
         "INSERT INTO Movie ( Movie Name, Movie Year) "
         "VALUES (%s, %s)"
     )
-    data = ( request.form['Movie Name'], request.form['Movie Year'])
+    data = ( request.formMovie['Movie Name'], request.formMovie['Movie Year'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
