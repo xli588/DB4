@@ -1,10 +1,9 @@
 <div><table border="1">
-<caption> Showing </caption>
+<caption> Genre </caption>
 <thead>
 <tr>
+<th> Genre </th>
 <th> Movie ID </th>
-<th> Movie Name</th>
-<th> Movie Year</th>
 <th> Delete    </th>
 <th> Modify    </th>
 </tr>
@@ -13,7 +12,6 @@
 <tr>
 <td>{{user.0 }}</td>
           <td>{{ user.1 }} </td>
-           <td>{{ user.2 }}</td>
 <td><form method="post" action="/delete?id={{ user.0 }}" style="display: inline;">
 <input type="submit" value="delete" />
 </form></td>	    		  

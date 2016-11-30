@@ -1,10 +1,12 @@
 <div><table border="1">
-<caption> Movies</caption>
+<caption> Customer </caption>
 <thead>
 <tr>
-<th> Movie ID </th>
-<th> Movie Name</th>
-<th> Movie Year</th>
+<th> CustomerID </th>
+<th> FirstName</th>
+<th> LastName</th>
+<th> Email </th>
+<th> Sex </th>
 <th> Delete    </th>
 <th> Modify    </th>
 </tr>
@@ -14,6 +16,8 @@
 <td>{{user.0 }}</td>
           <td>{{ user.1 }} </td>
            <td>{{ user.2 }}</td>
+<td> {{ user.3}} </td> 
+<td> {{ user.4}} </td>
 <td><form method="post" action="/delete?id={{ user.0 }}" style="display: inline;">
 <input type="submit" value="delete" />
 </form></td>	    		  
@@ -33,6 +37,6 @@
 </div>
 <div>
    
-    <a href="/entername">Add another</a><br />
+    <a href="/enterCustomername">Add another</a><br />
     <a href="/sqlInjection">Try a SQL injection attack</a>
 </div>
