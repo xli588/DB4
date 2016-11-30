@@ -164,7 +164,7 @@ def sqlInjectionResult():
 ### level 2 Customer ###
 @app.route('/enterCustomername')
 def helloName(name=None):
-    return render_template('formMovie.html', name=name)
+    return render_template('formCustomer.html', name=name)
 
 @app.route('/submit', methods=["POST"])
 def submit():
@@ -174,7 +174,7 @@ def submit():
         "INSERT INTO Customer (FirstName, LastName, Email, Sex) "
         "VALUES (%s, %s, %s, %s)"
     )
-    data = ( request.formMovie['Movie Name'], request.formMovie['Movie Year'])
+    data = ( request.formCustomer['FirstName'], request.formCustomer['LastName'], request.formCustomer['Email'], request.formCustomer['Sex'], )
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
