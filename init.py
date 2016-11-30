@@ -123,7 +123,7 @@ def TheatreRoom():
 
 ### level 2 Movie ###
 
-@app.route('/enterMovieName')
+@app.route('/entername')
 def helloName(name=None):
     return render_template('formMovie.html', name=name)
 
@@ -135,7 +135,7 @@ def submit():
         "INSERT INTO Movie ( Movie Name, Movie Year) "
         "VALUES (%s, %s)"
     )
-    data = ( request.form['MovieName'], request.form['MovieYear'])
+    data = ( request.form['Movie Name'], request.form['Movie Year'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
