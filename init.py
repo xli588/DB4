@@ -16,7 +16,7 @@ def Guest():
     return render_template('Guest.html')
 
 
-@app.route("/users")
+@app.route("/Movie")
 def Movie():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
