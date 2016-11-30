@@ -25,7 +25,7 @@ def Movie():
     cursor.execute(query)
     users=cursor.fetchall()
     cnx.close()
-    return render_template('MovieInsert.html',users=users)
+    return render_template('Movie.html',users=users)
 
 
 @app.route("/Genres")
