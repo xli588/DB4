@@ -22,7 +22,7 @@ def submit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Movies (idMovie, MovieName, MovieYear) "
+        "INSERT INTO Movies (MovieID, MovieName, MovieYear) "
         "VALUES (%s, %s, %s)"
     )
     data = (request.form['Movie ID'], request.form['Movie Name'], request.form['Movie Year'])
