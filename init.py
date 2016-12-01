@@ -179,7 +179,7 @@ def Customersubmit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexCustomer.html', FirstName=request.form['firstname'], lastname=request.form['lastname'])
+    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'])
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
@@ -194,7 +194,7 @@ def Genresubmit():
         "INSERT INTO Genre (Genre, Movie ID) "
         "VALUES (%s, %s)"
     )
-    data = ( request.form['moviename'], request.form['movieyear'])
+    data = ( request.form['genre'], request.form['movieid'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
