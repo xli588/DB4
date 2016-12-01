@@ -139,7 +139,7 @@ def Moviesubmit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('Moviesumbit.html', MovieName=request.formMovie['Movie Name'])
+    return render_template('indexMovie.html', MovieName=request.formMovie['Movie Name'])
 
 
 @app.route('/sqlInjection')
@@ -166,8 +166,8 @@ def sqlInjectionResult():
 def CustomerName(name=None):
     return render_template('formCustomer.html', name=name)
 
-@app.route('/Customersubmit', methods=["POST"])
-def Customersubmit():
+@app.route('/submit', methods=["POST"])
+def submit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
