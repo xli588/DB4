@@ -229,14 +229,14 @@ def Showingsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Showing ( ShowingID, ShowingDateTime, MovieID, RoomNumber, TicketPrice) "
+        "INSERT INTO Showing ( idShowing, ShowingDateTime, Movie_idMovie,  TheatreRoom_RoomNumber , TicketPrice) "
         "VALUES (%s, %s, %s, %s, %s)"
     )
-    data = ( request.form['moviename'], request.form['movieyear'])
+    data = ( request.form['showingid'], request.form['showingdatetime'], request.form['movieid'], request.form['roomnumber'],request.form['ticketprice'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexShowing.html')
+    return render_template('indexShowing.html', showingid=request.form['showingid'], showingdatetime=request.form['showingdatetime'], movieid=request.form['movieid'],roomnumber= request.form['roomnumber'],ticketprice=request.form['ticketprice'])
 
 ### level 2 TheatreRoom ###
 @app.route('/enterTheatreRoomname')
@@ -248,14 +248,14 @@ def TheatreRoomsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO TheatreRoom (RoomNumer, Capacity) "
+        "INSERT INTO TheatreRoom (TheatreRoom_RoomNumber, Capacity) "
         "VALUES (%s, %s"
     )
-    data = ( request.form['moviename'], request.form['movieyear'])
+    data = ( request.form['roomnumber'], request.form['capacity'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexTheatreRoom.html', moviename=request.form['moviename'])
+    return render_template('indexTheatreRoom.html', roomnumber=request.form['roomnumber'], capacity= request.form['capacity'])
 
 
 if __name__ == "__main__":
