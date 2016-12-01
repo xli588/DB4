@@ -185,8 +185,8 @@ def Customersubmit():
 def GenreName(name=None):
     return render_template('formGenre.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/Genresubmit', methods=["POST"])
+def Genresubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
@@ -204,8 +204,8 @@ def submit():
 def AttendName(name=None):
     return render_template('formAttend.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/Attendsubmit', methods=["POST"])
+def Attendsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
@@ -223,8 +223,8 @@ def submit():
 def ShowingName(name=None):
     return render_template('formShowing.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/Showingsubmit', methods=["POST"])
+def Showingsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
@@ -242,8 +242,8 @@ def submit():
 def TheatreRoomName(name=None):
     return render_template('formTheatreRoom.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/TheatreRoomsubmit', methods=["POST"])
+def TheatreRoomsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
