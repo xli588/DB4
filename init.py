@@ -127,8 +127,8 @@ def TheatreRoom():
 def MovieName(name=None):
     return render_template('formMovie.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/Moviesubmit', methods=["POST"])
+def Moviesubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
