@@ -173,13 +173,13 @@ def Customersubmit():
     cursor = cnx.cursor()
     insert_stmt = (
         "INSERT INTO Customer (CustomerID, FirstName, LastName, Email, Sex) "
-        "VALUES (%s, %s, %s, %s)"
+        "VALUES (%s, %s, %s, %s, %s)"
     )
     data = (request.form['customerid'], request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'], )
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexCustomer.html', customerid=request.form['customerid'],firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'],sex=request.form['sex'])
+    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'],sex=request.form['sex'])
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
