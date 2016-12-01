@@ -129,7 +129,7 @@ def MovieName(name=None):
 
 @app.route('/Moviesubmit', methods=["POST"])
 def Moviesubmit():
-    return render_template('indexMovie.html', MovieName=request.Movie['MovieName'])
+    return render_template('indexMovie.html', MovieName=request.MovieName['MovieName'])
 
 
 @app.route('/sqlInjection')
