@@ -173,7 +173,7 @@ def Customersubmit():
     cursor = cnx.cursor()
     insert_stmt = (
         "INSERT INTO Customer (idCustomer, FirstName, LastName, EmailAddress, Sex) "
-        "VALUES ( %s, %s, %s, %s)"
+        "VALUES (%s, %s, %s, %s, %s)"
     )
     data = (request.form['customerid'],request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
     cursor.execute(insert_stmt, data)
