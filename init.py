@@ -139,7 +139,7 @@ def Moviesubmit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexMovie.html', MovieName=request.formMovie	['MovieName'])
+    return render_template('indexMovie.html', MovieName=request.formMovie['MovieName'], MovieYear=request.formMovie['MovieYear'])
 
 
 @app.route('/sqlInjection')
