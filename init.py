@@ -132,14 +132,14 @@ def Moviesubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Movie ( Movie Name, Movie Year) "
+        "INSERT INTO Movie ( MovieName, MovieYear) "
         "VALUES (%s, %s)"
     )
-    data = ( request.formMovie['Movie Name'], request.formMovie['Movie Year'])
+    data = ( request.formMovie['MovieName'], request.formMovie['MovieYear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexMovie.html', MovieName=request.formMovie['Movie Name'])
+    return render_template('indexMovie.html', MovieName=request.formMovie['MovieName'])
 
 
 @app.route('/sqlInjection')
