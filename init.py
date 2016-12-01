@@ -249,7 +249,7 @@ def TheatreRoomsubmit():
     cursor = cnx.cursor()
     insert_stmt = (
         "INSERT INTO TheatreRoom (TheatreRoom_RoomNumber, Capacity) "
-        "VALUES (%s, %s"
+        "VALUES (%s, %s)"
     )
     data = ( request.form['roomnumber'], request.form['capacity'])
     cursor.execute(insert_stmt, data)
