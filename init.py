@@ -103,7 +103,7 @@ def Attend():
     
    return render_template('Attend.html',users=users)
 
-@app.route("/Theatre")
+@app.route("/TheatreRoom")
 
 def TheatreRoom():
     
