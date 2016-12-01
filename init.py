@@ -161,6 +161,33 @@ def sqlInjectionResult():
     cnx.close()
     return str(users)
 
+@app.route('/delete', methods=["POST", "GET"])
+
+def delete():
+    
+id = request.args.get('MovieID')
+    
+cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    
+cursor = cnx.cursor()
+    
+delete_stmt = (
+ "DELETE FROM Movie WHERE idMovie = %s;"
+    )
+    
+data = (id,)
+    
+cursor.execute(delete_stmt, data)
+    
+print (cursor._executed)
+    
+cnx.commit()
+   
+cnx.close()
+    
+return render_template('indexMovie.html')
+  
+
 ### level 2 Customer ###
 @app.route('/enterCustomername')
 def CustomerName(name=None):
