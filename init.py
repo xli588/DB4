@@ -179,7 +179,7 @@ def Customersubmit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'])
+    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'],sex=request.form['sex'])
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
