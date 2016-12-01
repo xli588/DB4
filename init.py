@@ -172,14 +172,14 @@ def Customersubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Customer ( FirstName, LastName, Email, Sex) "
+        "INSERT INTO Customer (idCustomer, FirstName, LastName, EmailAddress, Sex) "
         "VALUES ( %s, %s, %s, %s)"
     )
-    data = (request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
+    data = (request.form['customerid'],request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'], sex=request.form['sex'])
+    return render_template('indexCustomer.html', customerid=request.form['customerid'], firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'], sex=request.form['sex'])
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
