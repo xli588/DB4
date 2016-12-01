@@ -127,8 +127,8 @@ def TheatreRoom():
 def MovieName(name=None):
     return render_template('formMovie.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/Moviesubmit', methods=["POST"])
+def Moviesubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
@@ -139,7 +139,7 @@ def submit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexMovie.html', MovieName=request.formMovie['Movie Name'])
+    return render_template('Moviesumbit.html', MovieName=request.formMovie['Movie Name'])
 
 
 @app.route('/sqlInjection')
