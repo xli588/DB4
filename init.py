@@ -166,8 +166,8 @@ def sqlInjectionResult():
 def CustomerName(name=None):
     return render_template('formCustomer.html', name=name)
 
-@app.route('/submit', methods=["POST"])
-def submit():
+@app.route('/Customersubmit', methods=["POST"])
+def Customersubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
