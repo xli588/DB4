@@ -175,11 +175,11 @@ def Customersubmit():
         "INSERT INTO Customer (FirstName, LastName, Email, Sex) "
         "VALUES (%s, %s, %s, %s)"
     )
-    data = ( request.formCustomer['FirstName'], request.formCustomer['LastName'], request.formCustomer['Email'], request.formCustomer['Sex'], )
+    data = ( request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'], )
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexCustomer.html', FirstName=request.formCustomer['FirstName'], LastName=request.formCustomer['LastName'])
+    return render_template('indexCustomer.html', FirstName=request.form['firstname'], lastname=request.form['lastname'])
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
@@ -194,11 +194,11 @@ def Genresubmit():
         "INSERT INTO Genre (Genre, Movie ID) "
         "VALUES (%s, %s)"
     )
-    data = ( request.formGenre['Movie Name'], request.formGenre['Movie Year'])
+    data = ( request.form['moviename'], request.form['movieyear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexGenre.html', MovieName=request.formGenre['Movie Name'])
+    return render_template('indexGenre.html', moviename=request.form['moviename'])
 
 ### level 2 Attend ###
 @app.route('/enterAttendname')
@@ -213,11 +213,11 @@ def Attendsubmit():
         "INSERT INTO Attend (CustomerID, ShowingID, Rating) "
         "VALUES (%s, %s, %s)"
     )
-    data = ( request.formAttend['Movie Name'], request.formAttend['Movie Year'])
+    data = ( request.form['moviename'], request.form['movieyear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexAttend.html', MovieName=request.formAttend['Movie Name'])
+    return render_template('indexAttend.html', moviename=request.form['moviename'])
 
 ### level 2 Showing ###
 @app.route('/enterShowingname')
@@ -232,11 +232,11 @@ def Showingsubmit():
         "INSERT INTO Showing ( ShowingID, ShowingDateTime, MovieID, RoomNumber, TicketPrice) "
         "VALUES (%s, %s, %s, %s, %s)"
     )
-    data = ( request.formShowing['Movie Name'], request.formShowing['Movie Year'])
+    data = ( request.form['moviename'], request.form['movieyear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexShowing.html', MovieName=request.formShowing['Movie Name'])
+    return render_template('indexShowing.html', MovieName=request.form['moviename'])
 
 ### level 2 TheatreRoom ###
 @app.route('/enterTheatreRoomname')
@@ -251,11 +251,11 @@ def TheatreRoomsubmit():
         "INSERT INTO TheatreRoom (RoomNumer, Capacity) "
         "VALUES (%s, %s"
     )
-    data = ( request.formTheatreRoom['Movie Name'], request.formTheatreRoom['Movie Year'])
+    data = ( request.form['moviename'], request.form['movieyear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexTheatreRoom.html', MovieName=request.formTheatreRoom['Movie Name'])
+    return render_template('indexTheatreRoom.html', moviename=request.form['moviename'])
 
 
 if __name__ == "__main__":
