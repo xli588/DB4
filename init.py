@@ -248,7 +248,7 @@ def TheatreRoomsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO TheatreRoom (TheatreRoom_RoomNumber, Capacity) "
+        "INSERT INTO TheatreRoom (RoomNumber, Capacity) "
         "VALUES (%s, %s)"
     )
     data = ( request.form['roomnumber'], request.form['capacity'])
