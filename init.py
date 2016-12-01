@@ -135,11 +135,11 @@ def Moviesubmit():
         "INSERT INTO Movie ( MovieName, MovieYear) "
         "VALUES (%s, %s)"
     )
-    data = ( request.form['MovieName'], request.form['MovieYear'])
+    data = ( request.Movieform['MovieName'], request.Movieform['MovieYear'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexMovie.html', MovieName=request.form['MovieName'])
+    return render_template('indexMovie.html', MovieName=request.Movieform['MovieName'])
 
 
 @app.route('/sqlInjection')
