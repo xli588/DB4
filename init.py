@@ -210,7 +210,7 @@ def Attendsubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Attend (CustomerID, ShowingID, Rating) "
+        "INSERT INTO Attend (Customer_idCustomer,Showing_idShowing , Rating) "
         "VALUES (%s, %s, %s)"
     )
     data = ( request.form['customerid'], request.form['showingid'], request.form['rating'] )
