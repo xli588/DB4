@@ -236,7 +236,7 @@ def Showingsubmit():
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexShowing.html', MovieName=request.form['moviename'])
+    return render_template('indexShowing.html')
 
 ### level 2 TheatreRoom ###
 @app.route('/enterTheatreRoomname')
