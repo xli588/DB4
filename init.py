@@ -173,13 +173,13 @@ def Customersubmit():
     cursor = cnx.cursor()
     insert_stmt = (
         "INSERT INTO Customer ( FirstName, LastName, Email, Sex) "
-        "VALUES (%s, %s, %s, %s, %s)"
+        "VALUES ( %s, %s, %s, %s)"
     )
     data = (request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'],sex=request.form['sex'])
+    return render_template('indexCustomer.html', firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'], sex=request.form['sex'])
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
@@ -191,14 +191,14 @@ def Genresubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Genre (Genre, Movie ID) "
+        "INSERT INTO Genre (Genre,  Movie_idMovie) "
         "VALUES (%s, %s)"
     )
     data = ( request.form['genre'], request.form['movieid'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexGenre.html', moviename=request.form['moviename'])
+    return render_template('indexGenre.html', genre=request.form['genre'], movieid=request.form['movieid'])
 
 ### level 2 Attend ###
 @app.route('/enterAttendname')
@@ -213,11 +213,11 @@ def Attendsubmit():
         "INSERT INTO Attend (CustomerID, ShowingID, Rating) "
         "VALUES (%s, %s, %s)"
     )
-    data = ( request.form['moviename'], request.form['movieyear'])
+    data = ( request.form['customerid'], request.form['showingid'], request.form['rating'] )
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
-    return render_template('indexAttend.html', moviename=request.form['moviename'])
+    return render_template('indexAttend.html', customerid=request.form['moviename'])
 
 ### level 2 Showing ###
 @app.route('/enterShowingname')
