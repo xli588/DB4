@@ -172,10 +172,10 @@ def Customersubmit():
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()
     insert_stmt = (
-        "INSERT INTO Customer (CustomerID, FirstName, LastName, Email, Sex) "
+        "INSERT INTO Customer ( FirstName, LastName, Email, Sex) "
         "VALUES (%s, %s, %s, %s, %s)"
     )
-    data = (request.form['customerid'], request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
+    data = (request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
     cursor.execute(insert_stmt, data)
     cnx.commit()
     cnx.close()
