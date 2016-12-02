@@ -184,12 +184,10 @@ def Customersubmit():
 def Customerdelete(data):
    firstname=data.split('_')[0]
    lastname=data.split('_')[1]
-
    cnx=mysql.connector.connect(user='root', database='MovieTheatre')
    cursor=cnx.cursor()
    delete_stmt=("delete from Customer Where firstname=\'"+firstname+"\'    and lastname=\'"+lastname+"\'")
    cursor.executr(delete_stmt)
-
    query=("select FirstName, LastName, EmailAddress, Sex from Customer order by LastName")
    returnList=[]
    try:
@@ -198,7 +196,6 @@ def Customerdelete(data):
      return render_template('Customer.html', results=returnList)
    for i in cursor:
      returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
-   
    cnx.commit()
    cursor.close()
    cnx.close()
