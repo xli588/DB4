@@ -141,26 +141,6 @@ def Moviesubmit():
     cnx.close()
     return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
-@app.route('/deleteMovie', methods=["POST", "GET"])
-
-def delete():
-    
-moviename=data.split('_')[0]
-movieyear=data.split('_')[1]
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-       cursor = cnx.cursor()
-    
-    delete_stmt = (
- "DELETE FROM Movie WHERE idMovie = %s;"
-    )
-    
-    cursor.execute(delete_stmt,data)
-  
-    cnx.commit()
-    cnx.close()     
-return render_template('indexMovie.html')
-  
-
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
     return render_template('form2Movie.html')
@@ -199,6 +179,24 @@ def Customersubmit():
     cnx.commit()
     cnx.close()
     return render_template('indexCustomer.html', customerid=request.form['customerid'], firstname=request.form['firstname'], lastname=request.form['lastname'], email=request.form['email'], sex=request.form['sex'])
+
+@app.route("/Customerdelete/<data>")
+def Customerdelete(data):
+firstname=data.split('_')[0]
+lastname=data.split('_')[1]
+
+cnx=mysql.connector.connect(user='root', database='MovieTheatre')
+cursor=cnx.cursor()
+delete_stmt=("delete from Customer Where firstname=\'"+firstname+"\' and lastname=\'"+lastname+"\'")
+cursor.executr(delete_stmt)
+
+query=("select FirstName, LastName, EmailAddress, Sex from Customer order by LastName")
+returnList=[]
+try:
+cursor.execute(query)
+except:
+return render_template("Customer.html". results=returnList)
+
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
