@@ -195,7 +195,7 @@ def Customerdelete(data):
    try:
      cursor.execute(query)
    except:
-     return render_template("indexCustomer_html". results=returnList)
+     return render_template('indexCustomer.html'. results=returnList)
    for i in cursor:
      returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
 
