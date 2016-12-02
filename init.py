@@ -195,10 +195,14 @@ def Customerdelete(data):
    try:
      cursor.execute(query)
    except:
-     return render_template('indexCustomer.html', results=returnList)
+     return render_template('formCustomer.html', results=returnList)
    for i in cursor:
      returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
-
+   
+   cnx.commit()
+   cursor.close()
+   cnx.close()
+   return render_template('formCustomer.html', results=returnList)
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
