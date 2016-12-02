@@ -182,12 +182,12 @@ def Customersubmit():
 
 @app.route("/Customerdelete/<data>")
 def Customerdelete(data):
-   firstname=data.split('_')[0]
-   lastname=data.split('_')[1]
+   idCustomer = request.args.get('Customerid')
    cnx=mysql.connector.connect(user='root', database='MovieTheatre')
    cursor=cnx.cursor()
-   delete_stmt=("delete from Customer Where firstname=\'"+firstname+"\'    and lastname=\'"+lastname+"\'")
-   cursor.executr(delete_stmt)
+   delete_stmt=("delete from Customer Where idCustomer='%s;'")
+   data=(idCustomer,)
+   cursor.executr(delete_stmt,data)
    query=("select FirstName, LastName, EmailAddress, Sex from Customer order by LastName")
    returnList=[]
    try:
