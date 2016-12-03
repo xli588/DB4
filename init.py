@@ -141,6 +141,32 @@ def Moviesubmit():
     cnx.close()
     return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
+
+@app.route('/modifyMovie', methods=["POST"])
+
+def modifyMovie():
+    
+     id = request.args.get('id')
+    
+     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+       cursor = cnx.cursor()
+    
+     modify_stmt = (
+"UPDATE Movie SET MovieName = %s, MovieYear = %s WHERE idMovie = %s;"
+)
+   
+     print(request.form.items)
+    
+     data = (request.form['moviename'], request.form['movieyear'], id,)
+        cursor.execute(modify_stmt, data)
+    
+     cnx.commit()
+    
+     cnx.close()
+   
+     return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
+
+
 @app.route('/sqlInjection')
 def sqlInjection(name=None):
     return render_template('form2Movie.html')
@@ -193,7 +219,7 @@ def Customerdelete(data):
    try:
      cursor.execute(query)
    except:
-     return render_template('Customer.html', results=returnList)
+     return render_template('Customerdelete.html', results=returnList)
    for i in cursor:
      returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
    cnx.commit()
