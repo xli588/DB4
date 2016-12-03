@@ -149,7 +149,7 @@ def modifyMovie():
     id = request.args.get('id')
     
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-       cursor = cnx.cursor()
+    cursor = cnx.cursor()
     
     modify_stmt = (
 "UPDATE Movie SET MovieName = %s, MovieYear = %s WHERE idMovie = %s;"
