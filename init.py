@@ -157,8 +157,8 @@ def modifyMovie():
     print(request.form.items)
     
     data = (request.form['moviename'], request.form['movieyear'], id,)
-        cursor.execute(modify_stmt, data)
-    
+ 
+    cursor.execute(modify_stmt, data)  
     cnx.commit()
     
     cnx.close()
