@@ -141,6 +141,28 @@ def Moviesubmit():
     cnx.close()
     return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
+@app.route('/Moviedelete', methods=["POST"])
+def Moviedelete():
+   movieid = request.args.get('movieid')
+   cnx=mysql.connector.connect(user='root', database='MovieTheatre')
+   cursor=cnx.cursor()
+   delete_stmt=("delete from Movie Where idMovie='%s;'")
+   data=(movieid,)
+   cursor.executr(delete_stmt,data)
+   query=("select MovieName, MovieYear from Movie order by LastName")
+   returnList=[]
+   try:
+     cursor.execute(query)
+   except:
+     return render_template('Movie.html', results=returnList)
+   for i in cursor:
+     returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
+   cnx.commit()
+   cursor.close()
+   cnx.close()
+   return render_template('Movie.html', results=returnList)
+    
+
 
 @app.route('/modifyMovie', methods=["POST"])
 
