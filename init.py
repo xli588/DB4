@@ -146,25 +146,25 @@ def Moviesubmit():
 
 def modifyMovie():
     
-     id = request.args.get('id')
+    id = request.args.get('id')
     
-     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
        cursor = cnx.cursor()
     
-     modify_stmt = (
+    modify_stmt = (
 "UPDATE Movie SET MovieName = %s, MovieYear = %s WHERE idMovie = %s;"
 )
    
-     print(request.form.items)
+    print(request.form.items)
     
-     data = (request.form['moviename'], request.form['movieyear'], id,)
+    data = (request.form['moviename'], request.form['movieyear'], id,)
         cursor.execute(modify_stmt, data)
     
-     cnx.commit()
+    cnx.commit()
     
-     cnx.close()
+    cnx.close()
    
-     return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
+    return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
 
 @app.route('/sqlInjection')
