@@ -149,7 +149,7 @@ def modifyMovie():
     id = request.args.get('id')
     
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
+       cursor = cnx.cursor()
     
     modify_stmt = (
 "UPDATE Movie SET MovieName = %s, MovieYear = %s WHERE idMovie = %s;"
@@ -173,9 +173,8 @@ def sqlInjection(name=None):
 
 @app.route('/submitSqlInjection', methods=["POST"])
 def sqlInjectionResult():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
-
     firstName = request.form['firstname']
     query = ("SELECT * from Customer where firstname = '" + firstName + "'")
     cursor.execute(query)
