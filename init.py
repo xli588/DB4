@@ -249,7 +249,7 @@ def Customerdelete(data):
 
 @app.route('/Customermodify', methods=["POST"])
 
-def Moviemodify():
+def Customermodify():
     
     customerid = request.args.get('customerid')
     
