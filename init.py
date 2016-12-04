@@ -143,13 +143,13 @@ def Moviesubmit():
 
 @app.route('/Moviedelete', methods=["POST"])
 def Moviedelete():
-   movieid = request.args.get('movieid')
+   moviename=data.split('_')[0]
+   movieyear=data.split('_')[1]
    cnx=mysql.connector.connect(user='root', database='MovieTheatre')
    cursor=cnx.cursor()
-   delete_stmt=("delete from Movie Where idMovie='%s;'")
-   data=(movieid,)
+   delete_stmt=("delete from Movie Where FirstName=\'"+firstname+"\' and LastName=\'"+lastname"\'")
    cursor.executr(delete_stmt,data)
-   query=("select MovieName, MovieYear from Movie order by LastName")
+   query=("select MovieName, MovieYear from Movie order by MovieName")
    returnList=[]
    try:
      cursor.execute(query)
@@ -164,9 +164,9 @@ def Moviedelete():
     
 
 
-@app.route('/modifyMovie', methods=["POST"])
+@app.route('/Moviemodify', methods=["POST"])
 
-def modifyMovie():
+def Moviemodify():
     
     id = request.args.get('id')
     
