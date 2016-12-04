@@ -178,7 +178,7 @@ def Moviemodify():
    
     print(request.form.items)
     
-    data = (request.form['moviename'], request.form['movieyear'], id,)
+    data = (request.form['moviename'], request.form['movieyear'], id)
  
     cursor.execute(modify_stmt, data)  
     cnx.commit()
@@ -251,24 +251,24 @@ def Customerdelete(data):
 
 def Moviemodify():
     
-    customerid = request.args.get('id')
+    customerid = request.args.get('customerid')
     
     cnx = mysql.connector.connect(user='root', database='MovieTheatre')
     cursor = cnx.cursor()   
     modify_stmt = (
-"UPDATE Movie SET MovieName = %s, MovieYear = %s WHERE idMovie = %s;"
+"UPDATE Customer SET LastName = %s, FirstName = %s, EmailAddress=%s, Sex=%s WHERE idCustomer = %s;"
 )
    
     print(request.form.items)
     
-    data = (request.form['moviename'], request.form['movieyear'], id,)
+    data = (request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'])
  
     cursor.execute(modify_stmt, data)  
     cnx.commit()
     
     cnx.close()
    
-    return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
+    return render_template('modifyCustomer.html',request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'] )
 
 
 ### level 2 Genre ###
@@ -290,6 +290,50 @@ def Genresubmit():
     cnx.close()
     return render_template('indexGenre.html', genre=request.form['genre'], movieid=request.form['movieid'])
 
+@app.route("/Genredelete/<data>")
+def Genredelete(data):
+   movieid = request.args.get('movieid')
+   cnx=mysql.connector.connect(user='root', database='MovieTheatre')
+   cursor=cnx.cursor()
+   delete_stmt=("delete from Genre Where Movie_idMovie='%s;'")
+   data=(movieid,)
+   cursor.executr(delete_stmt,data)
+   query=("select Genre, Movie_idMovie from Genre")
+   returnList=[]
+   try:
+     cursor.execute(query)
+   except:
+     return render_template('Genredelete.html', results=returnList)
+   for i in cursor:
+     returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
+   cnx.commit()
+   cursor.close()
+   cnx.close()
+   return render_template('Genre.html', results=returnList)
+
+@app.route('/Genremodify', methods=["POST"])
+
+def Genremodify():
+    
+    movieid = request.args.get('movieid')
+    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()   
+    modify_stmt = (
+"UPDATE Genre SET Genre = %s, Movie_idMovie = %s;"
+)
+   
+    print(request.form.items)
+    
+    data = (request.form['genre'], request.form['movieid'])
+ 
+    cursor.execute(modify_stmt, data)  
+    cnx.commit()
+    
+    cnx.close()
+   
+    return render_template('modifyGenre.html',request.form['genre'], request.form['movieid'] )
+
 ### level 2 Attend ###
 @app.route('/enterAttendname')
 def AttendName(name=None):
@@ -308,6 +352,50 @@ def Attendsubmit():
     cnx.commit()
     cnx.close()
     return render_template('indexAttend.html', customerid=request.form['moviename'])
+
+@app.route("/Attenddelete/<data>")
+def Attenddelete(data):
+   customerid = request.args.get('customerid')
+   cnx=mysql.connector.connect(user='root', database='MovieTheatre')
+   cursor=cnx.cursor()
+   delete_stmt=("delete from Attend Where Customer_CustomerId='%s'")
+   cursor.executr(delete_stmt,data)
+   query=("select Attend, Movie_idMovie from Attend")
+   returnList=[]
+   try:
+     cursor.execute(query)
+   except:
+     return render_template('Attenddelete.html', results=returnList)
+   for i in cursor:
+     returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
+   cnx.commit()
+   cursor.close()
+   cnx.close()
+   return render_template('Attend.html', results=returnList)
+
+@app.route('/Attendmodify', methods=["POST"])
+
+def Attendmodify():
+    
+    movieid = request.args.get('movieid')
+    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()   
+    modify_stmt = (
+"UPDATE Attend SET Genre = %s, Movie_idMovie = %s;"
+)
+   
+    print(request.form.items)
+    
+    data = (request.form['customerid'], request.form['showingid'], request.form['rating'])
+ 
+    cursor.execute(modify_stmt, data)  
+    cnx.commit()
+    
+    cnx.close()
+   
+    return render_template('modifyAttend.html',request.form['customerid'], request.form['showingid'], request.form['rating'])
+
 
 ### level 2 Showing ###
 @app.route('/enterShowingname')
@@ -328,6 +416,49 @@ def Showingsubmit():
     cnx.close()
     return render_template('indexShowing.html', showingid=request.form['showingid'], showingdatetime=request.form['showingdatetime'], movieid=request.form['movieid'],roomnumber= request.form['roomnumber'],ticketprice=request.form['ticketprice'])
 
+@app.route("/Showingdelete/<data>")
+def Showingdelete(data):
+   showingid = request.args.get('showingid')
+   cnx=mysql.connector.connect(user='root', database='MovieTheatre')
+   cursor=cnx.cursor()
+   delete_stmt=("delete from Showing Where ShowingID='%s'")
+   cursor.executr(delete_stmt,data)
+   query=("select ShowingID, ShowingDateTime, MovieID, RoomNumber, TicketPrice from Showing")
+   returnList=[]
+   try:
+     cursor.execute(query)
+   except:
+     return render_template('Showingdelete.html', results=returnList)
+   for i in cursor:
+     returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
+   cnx.commit()
+   cursor.close()
+   cnx.close()
+   return render_template('Showing.html', results=returnList)
+
+@app.route('/Showingmodify', methods=["POST"])
+
+def Showingmodify():
+    
+    showingid = request.args.get('showingid')
+    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()   
+    modify_stmt = (
+"UPDATE Showing SET Showingid = %s, Movie_idMovie = %s;"
+)
+   
+    print(request.form.items)
+    
+    data = (request.form['showingid'], request.form['showingdatetime'], request.form['movieid'], request.form['roomnumber'], request.form['ticketprice'])
+ 
+    cursor.execute(modify_stmt, data)  
+    cnx.commit()
+    
+    cnx.close()
+   
+    return render_template('modifyShowing.html',request.form['showingid'], request.form['showingdatetime'], request.form['movieid'], request.form['roomnumber'], request.form['ticketprice'])
+
 ### level 2 TheatreRoom ###
 @app.route('/enterTheatreRoomname')
 def TheatreRoomName(name=None):
@@ -347,6 +478,49 @@ def TheatreRoomsubmit():
     cnx.close()
     return render_template('indexTheatreRoom.html', roomnumber=request.form['roomnumber'], capacity= request.form['capacity'])
 
+@app.route("/Theatredelete/<data>")
+def Theatredelete(data):
+   roomnumber = request.args.get('roomnumber')
+   cnx=mysql.connector.connect(user='root', database='MovieTheatre')
+   cursor=cnx.cursor()
+   delete_stmt=("delete from Showing Where RoomNumber='%s'")
+   cursor.executr(delete_stmt,data)
+   query=("select RoomNumber, Capacity from Showing")
+   returnList=[]
+   try:
+     cursor.execute(query)
+   except:
+     return render_template('TheatreRoomdelete.html', results=returnList)
+   for i in cursor:
+     returnList.append([i[0],i[1],i[2], bytes.decode(i[3])])
+   cnx.commit()
+   cursor.close()
+   cnx.close()
+   return render_template('TheatreRoom.html', results=returnList)
+
+@app.route('/TheatreRoommodify', methods=["POST"])
+
+def TheatreRoommodify():
+    
+    roomnumber = request.args.get('roomnumber')
+    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()   
+    modify_stmt = (
+"UPDATE TheatreRoom SET RoomNumber = %s, Capacity = %s;"
+)
+   
+    print(request.form.items)
+    
+    data = (request.form['roomnumber'], request.form['capacity'])
+ 
+    cursor.execute(modify_stmt, data)  
+    cnx.commit()
+    
+    cnx.close()
+   
+    return render_template('modifyShowing.html',request.form['roomnumber'], request.form['capacity'])
+ 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
