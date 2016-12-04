@@ -196,8 +196,8 @@ def sqlInjection(name=None):
 def sqlInjectionResult():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
-    firstName = request.form['firstname']
-    query = ("SELECT * from Customer where firstname = '" + firstName + "'")
+    moviename = request.form['moviename']
+    query = ("SELECT * from Movie where moviename = '" + MovieName + "'")
     cursor.execute(query)
     print("Attempting: " + query)
     users=cursor.fetchall()
@@ -270,6 +270,24 @@ def Customermodify():
    
     return render_template('modifyCustomer.html',request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'] )
 
+@app.route('/sqlInjection')
+def sqlInjection(name=None):
+    return render_template('form2Customer.html')
+
+@app.route('/submitSqlInjection', methods=["POST"])
+def sqlInjectionResult():
+    cnx = mysql.connector.connect(user='root',database='MovieTheatre')
+    cursor = cnx.cursor()
+    firstName = request.form['firstname']
+    query = ("SELECT * from Customer where firstname = '" + firstName + "'")
+    cursor.execute(query)
+    print("Attempting: " + query)
+    users=cursor.fetchall()
+
+    cnx.commit()
+    cnx.close()
+    return str(users)
+
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
@@ -334,6 +352,24 @@ def Genremodify():
    
     return render_template('modifyGenre.html',request.form['genre'], request.form['movieid'] )
 
+@app.route('/sqlInjection')
+def sqlInjection(name=None):
+    return render_template('form2Genre.html')
+
+@app.route('/submitSqlInjection', methods=["POST"])
+def sqlInjectionResult():
+    cnx = mysql.connector.connect(user='root',database='MovieTheatre')
+    cursor = cnx.cursor()
+    genre = request.form['genre']
+    query = ("SELECT * from Genre where genre = '" + genre + "'")
+    cursor.execute(query)
+    print("Attempting: " + query)
+    users=cursor.fetchall()
+
+    cnx.commit()
+    cnx.close()
+    return str(users)
+
 ### level 2 Attend ###
 @app.route('/enterAttendname')
 def AttendName(name=None):
@@ -396,6 +432,23 @@ def Attendmodify():
    
     return render_template('modifyAttend.html',request.form['customerid'], request.form['showingid'], request.form['rating'])
 
+@app.route('/sqlInjection')
+def sqlInjection(name=None):
+    return render_template('form2Attend.html')
+
+@app.route('/submitSqlInjection', methods=["POST"])
+def sqlInjectionResult():
+    cnx = mysql.connector.connect(user='root',database='MovieTheatre')
+    cursor = cnx.cursor()
+    customerid = request.form['customerid']
+    query = ("SELECT * from Attend where customerid = '" + customerid + "'")
+    cursor.execute(query)
+    print("Attempting: " + query)
+    users=cursor.fetchall()
+
+    cnx.commit()
+    cnx.close()
+    return str(users)
 
 ### level 2 Showing ###
 @app.route('/enterShowingname')
@@ -459,6 +512,24 @@ def Showingmodify():
    
     return render_template('modifyShowing.html',request.form['showingid'], request.form['showingdatetime'], request.form['movieid'], request.form['roomnumber'], request.form['ticketprice'])
 
+@app.route('/sqlInjection')
+def sqlInjection(name=None):
+    return render_template('form2Showing.html')
+
+@app.route('/submitSqlInjection', methods=["POST"])
+def sqlInjectionResult():
+    cnx = mysql.connector.connect(user='root',database='MovieTheatre')
+    cursor = cnx.cursor()
+    showingid = request.form['showingid']
+    query = ("SELECT * from Showing where showingid = '" + showingid + "'")
+    cursor.execute(query)
+    print("Attempting: " + query)
+    users=cursor.fetchall()
+
+    cnx.commit()
+    cnx.close()
+    return str(users)
+
 ### level 2 TheatreRoom ###
 @app.route('/enterTheatreRoomname')
 def TheatreRoomName(name=None):
@@ -519,8 +590,26 @@ def TheatreRoommodify():
     
     cnx.close()
    
-    return render_template('modifyShowing.html',request.form['roomnumber'], request.form['capacity'])
+    return render_template('modifyTheatreRoom.html',request.form['roomnumber'], request.form['capacity'])
  
+
+@app.route('/sqlInjection')
+def sqlInjection(name=None):
+    return render_template('form2TheatreRoom.html')
+
+@app.route('/submitSqlInjection', methods=["POST"])
+def sqlInjectionResult():
+    cnx = mysql.connector.connect(user='root',database='MovieTheatre')
+    cursor = cnx.cursor()
+    RoomNumber = request.form['roomnumber']
+    query = ("SELECT * from TheatreRoom where roomnumber= '" + roomnumber + "'")
+    cursor.execute(query)
+    print("Attempting: " + query)
+    users=cursor.fetchall()
+
+    cnx.commit()
+    cnx.close()
+    return str(users)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
