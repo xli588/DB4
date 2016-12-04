@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>Rate Showing</title>
+
+</head>
+<h2>Rate a Showing</h2>
+<body>
+<table border="1">
+<caption> Select your showing from below</caption>
+<thead>
+<tr>
+<th>Showing</th>
+</tr>
+<tbody>{% for user in users %}
+	
+<tr>
+<td><a href="/GuestRating">{{user.0 }}</a></td>   
+</tr>{% endfor %}
+	
+	    
+			
+</tbody>
+
+</table>
+</body>
+</html>

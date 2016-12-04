@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>Profile</title>
+
+</head>
+<h2>Your Profile</h2>
+<body>
+<table border="1">
+<thead>
+<tr>
+<th>Customer ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Sex</th>
+
+</tr>
+<tbody>{% for user in users %}
+	
+<tr>
+<td>{{user.0 }}</td> 
+<td>{{user.1 }}</td>  
+<td>{{user.2 }}</td> 
+<td>{{user.3 }}</td> 
+<td>{{user.4 }}</td> 
+
+</tr>{% endfor %}
+	
+	    
+			
+</tbody>
+
+</table>
+</body>
+</html>

@@ -6,16 +6,23 @@
 
 <body>
 <h2> Search Showing</h2>
-<script>
-function yousendit(){
-    if(document.getElementById('yousendit').checked){
-        window.location='/GuestSearchTitle';
-        return false;
-    }
-    return true;
 
+<input type="checkbox" checked=true name="WP1" value="/GuestSearchTitle">Seat Available
+<button onclick="opentabs()">Next</button>
+
+<script>
+function opentabs()
+{
+    var names = document.getElementsByName('WP1');
+    for(var x = 0; x < names.length; x++)
+    {
+        if(names[x].checked)
+        {
+            window.open(names[x].value);
+        }
+    }
 }
 </script>
-<input type="checkbox" onclick="return yousendit();">Seat Available
+
 </body>
 </html>

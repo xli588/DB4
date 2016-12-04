@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>View your Showing</title>
+
+</head>
+<h2>Showing Review</h2>
+<body>
+<table border="1">
+<caption>All your Showing</caption>
+<thead>
+<tr>
+<th>Movie</th>
+<th>Rating</th>
+
+</tr>
+<tbody>{% for user in users %}
+	
+<tr>
+<td>{{user.0 }}</td> 
+<td>{{user.1 }}</td>  
+</tr>{% endfor %}
+	
+	    
+			
+</tbody>
+
+</table>
+</body>
+</html>

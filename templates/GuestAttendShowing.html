@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>Choose Showing</title>
+</head>
+<h2>Buy Ticket</h2>
+<body>
+<table border="1">
+<caption> Select the showing from below</caption>
+<thead>
+<tr>
+<th>Showing ID</th>
+<th>Showing Date and Time</th>
+<th>Movie</th>
+<th>Theatre Room</th>
+<th>Ticket Price</th>
+
+</tr>
+<tbody>{% for user in users %}
+	
+<tr>
+<td><a href="/">{{user.0 }}</a></td>
+<td>{{user.1 }}</td>
+<td>{{user.2 }}</td>
+<td>{{user.3 }}</td>
+<td>{{user.4 }}</td> 
+</tr>{% endfor %}
+	
+	    
+			
+</tbody>
+
+</table>
+</body>
+</html>
