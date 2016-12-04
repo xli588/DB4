@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>Attended Showing Review</title>
+<style>
+table{
+    border-collapse:collapse;
+}
+tr,td{
+    border-left:none;
+    border-right:none;
+}
+</style>
+</head>
+<h2>Showing Review</h2>
+<body>
+<table border="1">
+<caption> Select your name</caption>
+<thead>
+<tr>
+<th>Last Name</th>
+<th>First Name</th>
+</tr>
+<tbody>{% for user in users %}
+	
+<tr>
+<td align="right"><a href="/" target="_blank">{{user.0 }}</a></td>
+<td><a href="/" target="_blank">{{user.1 }}</a></td>    
+</tr>{% endfor %}
+	
+	    
+			
+</tbody>
+
+</table>
+</body>
+</html>

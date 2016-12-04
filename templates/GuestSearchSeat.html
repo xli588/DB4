@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>Search Showing</title>
+</head>
+
+<body>
+<h2> Search Showing</h2>
+<script>
+function yousendit(){
+    if(document.getElementById('yousendit').checked){
+        window.location='/GuestSearchTitle';
+        return false;
+    }
+    return true;
+
+}
+</script>
+<input type="checkbox" onclick="return yousendit();">Seat Available
+</body>
+</html>
