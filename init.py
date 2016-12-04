@@ -188,12 +188,12 @@ def Moviemodify():
     return render_template('modifyMovie.html', name=name)
 
 
-@app.route('/sqlInjection')
-def sqlInjection(name=None):
+@app.route('/sqlInjectionMovie')
+def sqlInjectionMovie(name=None):
     return render_template('form2Movie.html')
 
-@app.route('/submitSqlInjection', methods=["POST"])
-def sqlInjectionResult():
+@app.route('/submitSqlInjectionMovie', methods=["POST"])
+def sqlInjectionResultMovie():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
     moviename = request.form['moviename']
@@ -270,12 +270,12 @@ def Customermodify():
    
     return render_template('modifyCustomer.html',request.form['firstname'], request.form['lastname'], request.form['email'], request.form['sex'] )
 
-@app.route('/sqlInjection')
-def sqlInjection(name=None):
+@app.route('/sqlInjectionCustomer')
+def sqlInjectionCustomer(name=None):
     return render_template('form2Customer.html')
 
-@app.route('/submitSqlInjection', methods=["POST"])
-def sqlInjectionResult():
+@app.route('/submitSqlInjectionCustomer', methods=["POST"])
+def sqlInjectionResultCustomer():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
     firstName = request.form['firstname']
@@ -352,12 +352,12 @@ def Genremodify():
    
     return render_template('modifyGenre.html',request.form['genre'], request.form['movieid'] )
 
-@app.route('/sqlInjection')
+@app.route('/sqlInjectionGenre')
 def sqlInjection(name=None):
     return render_template('form2Genre.html')
 
-@app.route('/submitSqlInjection', methods=["POST"])
-def sqlInjectionResult():
+@app.route('/submitSqlInjectionGenre', methods=["POST"])
+def sqlInjectionResultGenre():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
     genre = request.form['genre']
@@ -432,12 +432,12 @@ def Attendmodify():
    
     return render_template('modifyAttend.html',request.form['customerid'], request.form['showingid'], request.form['rating'])
 
-@app.route('/sqlInjection')
-def sqlInjection(name=None):
+@app.route('/sqlInjectionAttend')
+def sqlInjectionAttend(name=None):
     return render_template('form2Attend.html')
 
-@app.route('/submitSqlInjection', methods=["POST"])
-def sqlInjectionResult():
+@app.route('/submitSqlInjectionAttend', methods=["POST"])
+def sqlInjectionResultAttend():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
     customerid = request.form['customerid']
@@ -512,12 +512,12 @@ def Showingmodify():
    
     return render_template('modifyShowing.html',request.form['showingid'], request.form['showingdatetime'], request.form['movieid'], request.form['roomnumber'], request.form['ticketprice'])
 
-@app.route('/sqlInjection')
-def sqlInjection(name=None):
+@app.route('/sqlInjectionShowing')
+def sqlInjectionShowing(name=None):
     return render_template('form2Showing.html')
 
-@app.route('/submitSqlInjection', methods=["POST"])
-def sqlInjectionResult():
+@app.route('/submitSqlInjectionShowing', methods=["POST"])
+def sqlInjectionResultShowing():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
     showingid = request.form['showingid']
@@ -593,12 +593,12 @@ def TheatreRoommodify():
     return render_template('modifyTheatreRoom.html',request.form['roomnumber'], request.form['capacity'])
  
 
-@app.route('/sqlInjection')
-def sqlInjection(name=None):
+@app.route('/sqlInjectionTheatreRoom')
+def sqlInjectionTheatreRoom(name=None):
     return render_template('form2TheatreRoom.html')
 
-@app.route('/submitSqlInjection', methods=["POST"])
-def sqlInjectionResult():
+@app.route('/submitSqlInjectionTheatreRoom', methods=["POST"])
+def sqlInjectionResultTheatreRoom():
     cnx = mysql.connector.connect(user='root',database='MovieTheatre')
     cursor = cnx.cursor()
     RoomNumber = request.form['roomnumber']
@@ -610,131 +610,6 @@ def sqlInjectionResult():
     cnx.commit()
     cnx.close()
     return str(users)
-
-###Guest###
-@app.route("/GuestSearch")
-def Search():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT distinct Genre from Genre")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestSearch.html',users=users)
-
-@app.route("/GuestSearchDate")
-def SearchDate():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("select distinct date(ShowingDateTime) from Showing")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestSearchDate.html',users=users)
-
-@app.route("/GuestSearchEndDate")
-def SearchEndDate():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("select distinct date(ShowingDateTime) from Showing")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestSearchEndDate.html',users=users)
-
-@app.route("/GuestSearchSeat")
-def SearchSeat():
-    return render_template('GuestSearchSeat.html')
-
-@app.route("/GuestSearchTitle")
-def SearchTitle():
-    return render_template('GuestSearchTitle.html')
-
-@app.route("/GuestAttend")
-def GuestAttend():    
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT FirstName,LastName from Customer")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestAttend.html',users=users)
-
-@app.route("/GuestAttendShowing")
-def GuestAttendShowing():    
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("select * from Showing")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestAttendShowing.html',users=users)
-
-@app.route("/GuestRate")
-def GuestRate():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT FirstName,LastName from Customer")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestRate.html',users=users)
-
-
-@app.route("/GuestRateShowing")
-def GuestRateShowing():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT Showing_idShowing from Attend")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestRateShowing.html',users=users)
-
-
-@app.route("/GuestRating")
-def GuestRating():
-    return render_template('GuestRating.html')
-
-@app.route("/GuestViews")
-def GuestViews():    
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT FirstName,LastName from Customer")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestViews.html',users=users)
-
-@app.route("/GuestViewsSelect")
-def GuestViewsSelect():    
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT Showing_idShowing,Rating from Attend")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestViewsSelect.html',users=users)
-
-@app.route("/GuestProfile")
-def GuestProfile():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT FirstName,LastName from Customer")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestProfile.html',users=users)
-
-@app.route("/GuestProfileShow")
-def GuestProfileShow():
-    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
-    cursor = cnx.cursor()
-    query = ("SELECT * from Customer")
-    cursor.execute(query)
-    users=cursor.fetchall()
-    cnx.close()
-    return render_template('GuestProfileShow.html',users=users)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
