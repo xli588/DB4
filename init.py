@@ -185,7 +185,7 @@ def Moviemodify():
     
     cnx.close()
    
-    return render_template('modifyMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
+    return render_template('modifyMovie.html', name=name)
 
 
 @app.route('/sqlInjection')
