@@ -521,6 +521,84 @@ def TheatreRoommodify():
    
     return render_template('modifyShowing.html',request.form['roomnumber'], request.form['capacity'])
  
+###Guest###
+@app.route("/GuestSearch")
+def Search():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT distinct Genre from Genre")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestSearch.html',users=users)
 
+@app.route("/GuestSearchDate")
+def SearchDate():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("select distinct date(ShowingDateTime) from Showing")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestSearchDate.html',users=users)
+
+@app.route("/GuestSearchEndDate")
+def SearchEndDate():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("select distinct date(ShowingDateTime) from Showing")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestSearchEndDate.html',users=users)
+
+@app.route("/GuestSearchSeat")
+def SearchSeat():
+    return render_template('GuestSearchSeat.html')
+
+@app.route("/GuestSearchTitle")
+def SearchTitle():
+    return render_template('GuestSearchTitle.html')
+
+@app.route("/GuestAttend")
+def GuestAttend():    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT FirstName,LastName from Customer")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestAttend.html',users=users)
+
+@app.route("/GuestRate")
+def GuestRate():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT FirstName,LastName from Customer")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestRate.html',users=users)
+
+@app.route("/GuestViews")
+def GuestViews():    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT FirstName,LastName from Customer")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestViews.html',users=users)
+
+@app.route("/GuestProfile")
+def GuestProfile():
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()
+    query = ("SELECT FirstName,LastName from Customer")
+    cursor.execute(query)
+    users=cursor.fetchall()
+    cnx.close()
+    return render_template('GuestProfile.html',users=users)
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
