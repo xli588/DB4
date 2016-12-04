@@ -185,7 +185,7 @@ def Moviemodify():
     
     cnx.close()
    
-    return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
+    return render_template('modifyMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
 
 @app.route('/sqlInjection')
@@ -246,6 +246,30 @@ def Customerdelete(data):
    cursor.close()
    cnx.close()
    return render_template('Customer.html', results=returnList)
+
+@app.route('/Customermodify', methods=["POST"])
+
+def Moviemodify():
+    
+    customerid = request.args.get('id')
+    
+    cnx = mysql.connector.connect(user='root', database='MovieTheatre')
+    cursor = cnx.cursor()   
+    modify_stmt = (
+"UPDATE Movie SET MovieName = %s, MovieYear = %s WHERE idMovie = %s;"
+)
+   
+    print(request.form.items)
+    
+    data = (request.form['moviename'], request.form['movieyear'], id,)
+ 
+    cursor.execute(modify_stmt, data)  
+    cnx.commit()
+    
+    cnx.close()
+   
+    return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
+
 
 ### level 2 Genre ###
 @app.route('/enterGenrename')
