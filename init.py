@@ -141,8 +141,8 @@ def Moviesubmit():
     cnx.close()
     return render_template('indexMovie.html', moviename=request.form['moviename'], movieyear=request.form['movieyear'])
 
-@app.route('/Moviedelete', methods=["POST"])
-def Moviedelete():
+@app.route('/Moviedelete/<data>')
+def Moviedelete(data):
    moviename=data.split('_')[0]
    movieyear=data.split('_')[1]
    cnx=mysql.connector.connect(user='root', database='MovieTheatre')
